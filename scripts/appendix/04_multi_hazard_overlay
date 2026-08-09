@@ -1,4 +1,4 @@
-/ ── 11. MULTI-HAZARD OVERLAY ──────────────────────────────────
+// ── 11. MULTI-HAZARD OVERLAY ──────────────────────────────────
 // Combines long-term damage (2018→2024) with earthquake damage
 // to identify compound-damage zones.
 // This MUST come after section 10 since it uses pixelArea/totalArea.
