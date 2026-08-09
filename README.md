@@ -1,18 +1,16 @@
 # Aleppo Ancient City: Multi-Hazard Vulnerability Assessment
 
 Google Earth Engine and QGIS code for a multi-temporal, satellite-based 
-assessment of compound vulnerability in Aleppo's Ancient City, Syria — 
+assessment of compound vulnerability in Aleppo's Ancient City, Syria - 
 measuring the interaction between conflict-related building damage 
 (2012–2016) and earthquake damage from the February 2023 earthquake.
 
 MSc Geographic Information Science dissertation, University of Edinburgh, 2026.
-Author: Lama Alqahtani | Supervisor: Gary Watmough
+Author: Lama Alqahtani - Supervisor: Gary Watmough
 
 ## Overview
-
 This repository contains the full Google Earth Engine (GEE) JavaScript 
 codebase used to:
-
 - Load and process Sentinel-2 imagery across five timepoints (2018, 
   January/February 2023, February 2024, 2024)
 - Calculate NDBI and NDVI change indices
@@ -35,7 +33,6 @@ scripts/
 └── 06_sensitivity_analysis.js
 
 ## Data Sources
-
 - Sentinel-2 Level-2A Surface Reflectance (COPERNICUS/S2_SR_HARMONIZED), 
   via Google Earth Engine
 - Study area boundary: official UNESCO/OpenStreetMap-aligned polygon
@@ -46,11 +43,8 @@ Full data index with metadata is available in the dissertation's
 Technical Report, Appendix C.
 
 ## Note
-
 Scripts are organised for readability and correspond to sections of the 
 Technical Report; several scripts depend on variables defined in earlier 
 stages of the pipeline and are not intended to run independently outside 
 the context of the full `aleppo_master_analysis.js` script.
 dissertation (Part I: Research Paper, Part II: Technical Report).
-
-## Repository Structure
