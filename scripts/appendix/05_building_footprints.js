@@ -38,11 +38,11 @@ var longTermDamagedBldgs  = countDamagedBuildings(longTermDamaged, osmBuildings,
 var eqDamagedBldgs        = countDamagedBuildings(eqDamaged, osmBuildings, 'Earthquake');
 var aftermathDamagedBldgs = countDamagedBuildings(aftermathDamagedRaw, osmBuildings, 'Aftermath (1yr)');
 
-// Vulnerability tiers — built from your existing vulnerabilityTier image
-var tier1Bldgs = countDamagedBuildings(vulnerabilityTier.eq(1), osmBuildings, 'Vulnerability Tier 1 (Low)');
-var tier2Bldgs = countDamagedBuildings(vulnerabilityTier.eq(2), osmBuildings, 'Vulnerability Tier 2 (Moderate)');
-var tier3Bldgs = countDamagedBuildings(vulnerabilityTier.eq(3), osmBuildings, 'Vulnerability Tier 3 (High)');
-var tier4Bldgs = countDamagedBuildings(vulnerabilityTier.eq(4), osmBuildings, 'Vulnerability Tier 4 (Severe)');
+// damage tiers — built from your existing damageTier image
+var tier1Bldgs = countDamagedBuildings(damageTier.eq(1), osmBuildings, 'damage Tier 1 (Low)');
+var tier2Bldgs = countDamagedBuildings(damageTier.eq(2), osmBuildings, 'damage Tier 2 (Moderate)');
+var tier3Bldgs = countDamagedBuildings(damageTier.eq(3), osmBuildings, 'damage Tier 3 (High)');
+var tier4Bldgs = countDamagedBuildings(damageTier.eq(4), osmBuildings, 'damage Tier 4 (Severe)');
 
 // ── 16. EXPORT BUILDING-LEVEL TABLES ─────────────────────────
 Export.table.toDrive({
