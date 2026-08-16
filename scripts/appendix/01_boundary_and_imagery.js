@@ -1,4 +1,4 @@
-// ── 1. STUDY AREA — OFFICIAL UNESCO BOUNDARY ─────────────────
+// ── 1. STUDY AREA — OFFICIAL OSM BOUNDARY ─────────────────
 var ancientCity = ee.FeatureCollection(
   'projects/aleppo-dissertation-489421/assets/ancient_city_boundary'
 ).geometry();
@@ -10,7 +10,7 @@ var boundaryOutline = ee.Image().byte().paint({
   color: 1,
   width: 3
 });
-Map.addLayer(boundaryOutline, {palette: ['0000FF']}, 'Official UNESCO Boundary');
+Map.addLayer(boundaryOutline, {palette: ['0000FF']}, 'Official OSM Boundary');
 
 // ── 2. IMAGE LOADING FUNCTION ────────────────────────────────
 function getImage(startDate, endDate) {
