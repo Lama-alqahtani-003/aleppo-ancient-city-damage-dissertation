@@ -47,28 +47,28 @@ var tier4Bldgs = countDamagedBuildings(damageTier.eq(4), osmBuildings, 'damage T
 // ── 16. EXPORT BUILDING-LEVEL TABLES ─────────────────────────
 Export.table.toDrive({
   collection: eqDamagedBldgs,
-  description: 'EQ_Damaged_Buildings_UNESCO',
+  description: 'EQ_Damaged_Buildings_OSM',
   folder: 'Aleppo_Dissertation',
   fileFormat: 'CSV'
 });
 
 Export.table.toDrive({
   collection: longTermDamagedBldgs,
-  description: 'LongTerm_Damaged_Buildings_UNESCO',
+  description: 'LongTerm_Damaged_Buildings_OSM',
   folder: 'Aleppo_Dissertation',
   fileFormat: 'CSV'
 });
 
 Export.table.toDrive({
   collection: aftermathDamagedBldgs,
-  description: 'Aftermath_Damaged_Buildings_UNESCO',
+  description: 'Aftermath_Damaged_Buildings_OSM',
   folder: 'Aleppo_Dissertation',
   fileFormat: 'CSV'
 });
 
 Export.table.toDrive({
   collection: tier4Bldgs,
-  description: 'Tier4Severe_Damaged_Buildings_UNESCO',
+  description: 'Tier4Severe_Damaged_Buildings_OSM',
   folder: 'Aleppo_Dissertation',
   fileFormat: 'CSV'
 });
