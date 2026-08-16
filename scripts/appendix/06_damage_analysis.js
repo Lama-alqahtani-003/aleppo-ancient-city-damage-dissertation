@@ -1,4 +1,4 @@
-// ── 17. SENSITIVITY ANALYSIS: ALEPPO CITADEL ─────────────────
+// ── 17. DAMAGE ANALYSIS: ALEPPO CITADEL ─────────────────
 // Known damaged location used as an independent validation check.
 // Confirmed EQ damage: UNOSAT preliminary damage assessment
 // (Pleiades Neo imagery, 8 Feb 2023) found moderate damage to the
@@ -18,7 +18,7 @@ var citadelPoint = ee.Geometry.Point([37.1625, 36.1992]);
 var citadelBuffer = citadelPoint.buffer(30); // fallback if single point is noisy
 
 print('');
-print('=== SENSITIVITY ANALYSIS: ALEPPO CITADEL ===');
+print('=== DAMAGE ANALYSIS: ALEPPO CITADEL ===');
 print('Long-term damage flagged at Citadel (point):',
   longTermDamaged.reduceRegion({reducer: ee.Reducer.max(), geometry: citadelPoint, scale: 10}));
 print('EQ damage flagged at Citadel (point):',
@@ -40,7 +40,7 @@ print('Aftermath damage flagged at Citadel (30m buffer, any):',
 Map.centerObject(citadelPoint, 18);
 Map.addLayer(citadelPoint, {color: 'yellow'}, 'Aleppo Citadel (sensitivity test point)');
 
-// ── 17B. SENSITIVITY ANALYSIS: AL-MADINA SOUQ *site tested but not included*  ────────────────
+// ── 17B. DAMAGE ANALYSIS: AL-MADINA SOUQ *site tested but not included*  ────────────────
 // UNESCO's own official statement (7 Feb 2023) confirmed
 // "several buildings in the souks have been weakened" by the EQ
 
@@ -48,7 +48,7 @@ var souqPoint = ee.Geometry.Point([37.14971, 36.20084]);
 var souqBuffer = souqPoint.buffer(30);
 
 print('');
-print('=== SENSITIVITY ANALYSIS: AL-MADINA SOUQ ===');
+print('=== DAMAGE ANALYSIS: AL-MADINA SOUQ ===');
 print('EQ damage flagged at Souq (point):',
   eqDamaged.reduceRegion({reducer: ee.Reducer.max(), geometry: souqPoint, scale: 10}));
 print('EQ damage flagged at Souq (30m buffer):',
@@ -56,7 +56,7 @@ print('EQ damage flagged at Souq (30m buffer):',
 
 Map.addLayer(souqPoint, {color: 'orange'}, 'Al-Madina Souq (sensitivity test point)');
 
-// ── 17C. SENSITIVITY ANALYSIS: KHAN AL-WAZIR ─────────────────
+// ── 17C. DAMAGE ANALYSIS: KHAN AL-WAZIR ─────────────────
 // Documented in peer-reviewed architectural heritage literature as
 // damaged by both the 2012-2016 conflict and the 2023 earthquake
 
@@ -64,7 +64,7 @@ var khanPoint = ee.Geometry.Point([37.159295, 36.200028]);
 var khanBuffer = khanPoint.buffer(30);
 
 print('');
-print('=== SENSITIVITY ANALYSIS: KHAN AL-WAZIR ===');
+print('=== DAMAGE ANALYSIS: KHAN AL-WAZIR ===');
 print('Long-term damage flagged at Khan al-Wazir (point):',
   longTermDamaged.reduceRegion({reducer: ee.Reducer.max(), geometry: khanPoint, scale: 10}));
 print('EQ damage flagged at Khan al-Wazir (point):',
