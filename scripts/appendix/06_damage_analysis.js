@@ -25,8 +25,8 @@ print('EQ damage flagged at Citadel (point):',
   eqDamaged.reduceRegion({reducer: ee.Reducer.max(), geometry: citadelPoint, scale: 10}));
 print('Aftermath damage flagged at Citadel (point):',
   aftermathDamagedRaw.reduceRegion({reducer: ee.Reducer.max(), geometry: citadelPoint, scale: 10}));
-print('Vulnerability tier at Citadel (point):',
-  vulnerabilityTier.reduceRegion({reducer: ee.Reducer.first(), geometry: citadelPoint, scale: 10}));
+print('damage tier at Citadel (point):',
+  damageTier.reduceRegion({reducer: ee.Reducer.first(), geometry: citadelPoint, scale: 10}));
 
 print('');
 print('--- Buffered (30m) version, in case point is noisy ---');
