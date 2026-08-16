@@ -1,7 +1,7 @@
-# Aleppo Ancient City: Multi-Hazard Vulnerability Assessment
+# Aleppo Ancient City: Multi-Hazard damage Assessment
 
 Google Earth Engine and QGIS code for a multi-temporal, satellite-based 
-assessment of compound vulnerability in Aleppo's Ancient City, Syria - 
+assessment of compound damage in Aleppo's Ancient City, Syria - 
 measuring the interaction between conflict-related building damage 
 (2012-2016) and earthquake damage from the February 2023 earthquake.
 
@@ -15,7 +15,7 @@ codebase used to:
   January/February 2023, February 2024, 2024)
 - Calculate NDBI and NDVI change indices
 - Classify long-term, earthquake, and one-year aftermath building damage
-- Construct a multi-hazard overlay and four-tier vulnerability composite
+- Construct a multi-hazard overlay and four-tier damage composite
 - Quantify building-level damage using OpenStreetMap footprints
 - Validate results against independently documented damage at known sites
 - Test the significance of compound damage overlap via a Monte Carlo
@@ -25,14 +25,14 @@ Full methodology and results are documented in the accompanying
 
 ## Repository Structure
 scripts/
-├── aleppo_master_analysis.js # Full original analysis script
+├── aleppo_master_analysis.js #                  Full original analysis script
 └── appendix/ # Script split by processing stage,
 ├── 01_boundary_and_imagery.js # matching Part II Appendix B
 ├── 02_index_calculation_NDBI_NDVI.js
 ├── 03_change_detection_thresholds.js
 ├── 04_multi_hazard_overlay.js
 ├── 05_building_footprints.js
-├── 06_sensitivity_analysis.js
+├── 06_damage_analysis.js
 └── 07_significance_testing.py # Spatial permutation test (Part II, 5.2)
 
 ## Data Sources
