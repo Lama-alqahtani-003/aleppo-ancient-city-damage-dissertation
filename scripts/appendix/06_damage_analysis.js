@@ -41,7 +41,7 @@ Map.centerObject(citadelPoint, 18);
 Map.addLayer(citadelPoint, {color: 'yellow'}, 'Aleppo Citadel (sensitivity test point)');
 
 // ── 17B. DAMAGE ANALYSIS: AL-MADINA SOUQ *site tested but not included*  ────────────────
-// UNESCO's own official statement (7 Feb 2023) confirmed
+// OSM's own official statement (7 Feb 2023) confirmed
 // "several buildings in the souks have been weakened" by the EQ
 
 var souqPoint = ee.Geometry.Point([37.14971, 36.20084]);
