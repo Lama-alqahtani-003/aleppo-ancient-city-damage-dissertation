@@ -1,7 +1,7 @@
 """
 Spatial permutation test for compound damage overlap significance.
 
-Inputs: damage_zones_2018_2024_UNESCO.tif, EQ_damage_zones_2023_UNESCO.tif,
+Inputs: damage_zones_2018_2024_OSM.tif, EQ_damage_zones_2023_OSM.tif,
         ancient_city_boundary shapefile (all exported/sourced as described
         in Part II, Sections 4.2 and Appendix A).
 
@@ -18,8 +18,8 @@ import matplotlib.pyplot as plt
 np.random.seed(42)  # fixed seed for reproducibility
 
 # --- File paths (update to local paths as needed) ---
-EQ_DAMAGE_TIF = 'EQ_damage_zones_2023_UNESCO.tif'
-LONGTERM_DAMAGE_TIF = 'damage_zones_2018_2024_UNESCO.tif'
+EQ_DAMAGE_TIF = 'EQ_damage_zones_2023_OSM.tif'
+LONGTERM_DAMAGE_TIF = 'damage_zones_2018_2024_OSM.tif'
 BOUNDARY_SHP = 'ancient_city_boundary.shp'
 
 # --- Load damage layers ---
