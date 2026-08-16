@@ -60,10 +60,10 @@ print('% of study area = persistent damage:',
 print('% of EQ damage that continued into aftermath:',
   ee.Number(areaPersistent.get('area')).divide(areaEQ.get('area')).multiply(100));
 
-// ── 11C. VULNERABILITY COMPOSITE (4-TIER) ─────────────────────
+// ── 11C. DAMAGE COMPOSITE (4-TIER) ─────────────────────
 // Counts how many of the three independent damage analyses
 // flag each pixel. More layers flagging a pixel = higher
-// vulnerability, since it represents damage detected across
+// damage, since it represents damage detected across
 // multiple, independent time windows rather than a single event.
 //
 // Tier 1 = Low       (0 layers flagged)
@@ -76,50 +76,50 @@ var flagLongTerm  = absChange_2018_2024.gte(0.15);
 var flagEQ        = absChange_EQ.gte(0.10);
 var flagAftermath = absChange_Aftermath.gte(0.12);
 
-var vulnerabilityScore = flagLongTerm.add(flagEQ).add(flagAftermath)
-  .rename('vulnerability_score');
+var damageScore = flagLongTerm.add(flagEQ).add(flagAftermath)
+  .rename('damage_score');
 
-var vulnerabilityTier = ee.Image(1)
-  .where(vulnerabilityScore.eq(1), 2)
-  .where(vulnerabilityScore.eq(2), 3)
-  .where(vulnerabilityScore.eq(3), 4)
-  .rename('vulnerability_tier');
+var damageTier = ee.Image(1)
+  .where(damageScore.eq(1), 2)
+  .where(damageScore.eq(2), 3)
+  .where(damageScore.eq(3), 4)
+  .rename('damage_tier');
 
 // Statistics
-var areaTier1 = pixelArea.updateMask(vulnerabilityTier.eq(1))
+var areaTier1 = pixelArea.updateMask(damageTier.eq(1))
   .reduceRegion({reducer: ee.Reducer.sum(), geometry: ancientCity, scale: 10, maxPixels: 1e9});
-var areaTier2 = pixelArea.updateMask(vulnerabilityTier.eq(2))
+var areaTier2 = pixelArea.updateMask(damageTier.eq(2))
   .reduceRegion({reducer: ee.Reducer.sum(), geometry: ancientCity, scale: 10, maxPixels: 1e9});
-var areaTier3 = pixelArea.updateMask(vulnerabilityTier.eq(3))
+var areaTier3 = pixelArea.updateMask(damageTier.eq(3))
   .reduceRegion({reducer: ee.Reducer.sum(), geometry: ancientCity, scale: 10, maxPixels: 1e9});
-var areaTier4 = pixelArea.updateMask(vulnerabilityTier.eq(4))
+var areaTier4 = pixelArea.updateMask(damageTier.eq(4))
   .reduceRegion({reducer: ee.Reducer.sum(), geometry: ancientCity, scale: 10, maxPixels: 1e9});
 
 print('');
-print('=== VULNERABILITY COMPOSITE (4-TIER) ===');
+print('=== DAMAGE COMPOSITE (4-TIER) ===');
 print('Tier 1 - Low (m²):', areaTier1.get('area'));
 print('Tier 2 - Moderate (m²):', areaTier2.get('area'));
 print('Tier 3 - High (m²):', areaTier3.get('area'));
 print('Tier 4 - Severe (m²):', areaTier4.get('area'));
-print('% Tier 4 (severe vulnerability):',
+print('% Tier 4 (severe damage):',
   ee.Number(areaTier4.get('area')).divide(totalArea.get('area')).multiply(100));
 
-Map.addLayer(vulnerabilityTier,
+Map.addLayer(damageTier,
   {min:1, max:4, palette:['#2c7bb6','#ffffbf','#fdae61','#d7191c']},
-  '★★★ VULNERABILITY COMPOSITE (1=Low 2=Mod 3=High 4=Severe)', true);
+  '★★★ DAMAGE COMPOSITE (1=Low 2=Mod 3=High 4=Severe)', true);
 
 Export.image.toDrive({
-  image: vulnerabilityTier,
-  description: 'Aleppo_Vulnerability_Composite',
+  image: damageTier,
+  description: 'Aleppo_damage_Composite',
   folder: 'Aleppo_Dissertation',
-  fileNamePrefix: 'vulnerability_composite_UNESCO',
+  fileNamePrefix: 'damage_composite_OSM',
   region: ancientCity, scale: 10, crs: 'EPSG:4326', maxPixels: 1e9
 });
 
 // ── 12. PRINT RESULTS ─────────────────────────────────────────
 print('');
 print('=================================================');
-print('RESULTS — ANCIENT CITY ALEPPO (UNESCO BOUNDARY)');
+print('RESULTS — ANCIENT CITY ALEPPO (OSM BOUNDARY)');
 print('=================================================');
 print('Total study area (m²):', totalArea.get('area'));
 print('');
@@ -202,47 +202,47 @@ Map.addLayer(multiHazard,
 // ── 14. EXPORTS ───────────────────────────────────────────────
 Export.image.toDrive({
   image: damageClass_2018_2024,
-  description: 'Aleppo_DamageZones_2018_2024_UNESCO',
+  description: 'Aleppo_DamageZones_2018_2024_OSM',
   folder: 'Aleppo_Dissertation',
-  fileNamePrefix: 'damage_zones_2018_2024_UNESCO',
+  fileNamePrefix: 'damage_zones_2018_2024_OSM',
   region: ancientCity, scale: 10, crs: 'EPSG:4326', maxPixels: 1e9
 });
 
 Export.image.toDrive({
   image: damageClass_EQ,
-  description: 'Aleppo_EQ_DamageZones_2023_UNESCO',
+  description: 'Aleppo_EQ_DamageZones_2023_OSM',
   folder: 'Aleppo_Dissertation',
-  fileNamePrefix: 'EQ_damage_zones_2023_UNESCO',
+  fileNamePrefix: 'EQ_damage_zones_2023_OSM',
   region: ancientCity, scale: 10, crs: 'EPSG:4326', maxPixels: 1e9
 });
 
 Export.image.toDrive({
   image: change_2018_2024,
-  description: 'Aleppo_NDBI_Change_2018_2024_UNESCO',
+  description: 'Aleppo_NDBI_Change_2018_2024_OSM',
   folder: 'Aleppo_Dissertation',
-  fileNamePrefix: 'NDBI_change_2018_2024_UNESCO',
+  fileNamePrefix: 'NDBI_change_2018_2024_OSM',
   region: ancientCity, scale: 10, crs: 'EPSG:4326', maxPixels: 1e9
 });
 
 Export.image.toDrive({
   image: absChange_EQ,
-  description: 'Aleppo_EQ_AbsChange_2023_UNESCO',
+  description: 'Aleppo_EQ_AbsChange_2023_OSM',
   folder: 'Aleppo_Dissertation',
-  fileNamePrefix: 'EQ_abs_change_2023_UNESCO',
+  fileNamePrefix: 'EQ_abs_change_2023_OSM',
   region: ancientCity, scale: 10, crs: 'EPSG:4326', maxPixels: 1e9
 });
 
 Export.image.toDrive({
   image: multiHazard,
-  description: 'Aleppo_MultiHazard_Overlay_UNESCO',
+  description: 'Aleppo_MultiHazard_Overlay_OSM',
   folder: 'Aleppo_Dissertation',
-  fileNamePrefix: 'multi_hazard_overlay_UNESCO',
+  fileNamePrefix: 'multi_hazard_overlay_OSM',
   region: ancientCity, scale: 10, crs: 'EPSG:4326', maxPixels: 1e9
 });
 Export.image.toDrive({
   image: eqVsAftermath,
   description: 'Aleppo_EQ_vs_Aftermath_Overlay',
   folder: 'Aleppo_Dissertation',
-  fileNamePrefix: 'eq_vs_aftermath_overlay_UNESCO',
+  fileNamePrefix: 'eq_vs_aftermath_overlay_OSM',
   region: ancientCity, scale: 10, crs: 'EPSG:4326', maxPixels: 1e9
 });
